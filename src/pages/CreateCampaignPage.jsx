@@ -5,7 +5,8 @@ const CreateCampaignPage = () => {
   const [form, setForm] = useState({
     vaccineName: '',
     date: '',
-    slots: ''
+    slots: '',
+    description: ''
   });
 
   const handleChange = (e) => {
@@ -19,11 +20,12 @@ const CreateCampaignPage = () => {
         params: {
           vaccineName: form.vaccineName,
           date: form.date,
-          slots: form.slots
+          slots: form.slots,
+          description: form.description
         }
       });
       alert('Кампания создана');
-      setForm({ vaccineName: '', date: '', slots: '' });
+      setForm({ vaccineName: '', date: '', slots: '', description: '' });
     } catch (err) {
       console.error('Ошибка создания кампании', err);
       alert('Ошибка');
@@ -31,37 +33,72 @@ const CreateCampaignPage = () => {
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>Создать кампанию вакцинации</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="vaccineName"
-          value={form.vaccineName}
-          onChange={handleChange}
-          placeholder="Название вакцины"
-          required
-        /><br />
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+      <div className="bg-white shadow-xl rounded-2xl p-8 space-y-6">
+        <h2 className="text-3xl font-bold text-center text-gray-800">Создать кампанию вакцинации</h2>
 
-        <input
-          type="datetime-local"
-          name="date"
-          value={form.date}
-          onChange={handleChange}
-          required
-        /><br />
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Название вакцины</label>
+            <input
+              type="text"
+              name="vaccineName"
+              value={form.vaccineName}
+              onChange={handleChange}
+              placeholder="Например, Вакцина-X"
+              required
+              className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
 
-        <input
-          type="number"
-          name="slots"
-          value={form.slots}
-          onChange={handleChange}
-          placeholder="Количество слотов"
-          required
-        /><br />
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Дата и время</label>
+            <input
+              type="datetime-local"
+              name="date"
+              value={form.date}
+              onChange={handleChange}
+              required
+              step="600"
+              className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
 
-        <button type="submit">Создать</button>
-      </form>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Количество слотов</label>
+            <input
+              type="number"
+              name="slots"
+              value={form.slots}
+              onChange={handleChange}
+              placeholder="Например, 25"
+              required
+              min="1"
+              className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">Описание / адрес</label>
+            <textarea
+              name="description"
+              value={form.description}
+              onChange={handleChange}
+              placeholder="Адрес, кабинет, доп. информация"
+              rows={4}
+              required
+              className="w-full border border-gray-300 rounded-xl px-4 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-blue-600 text-white py-2 rounded-xl font-semibold hover:bg-blue-700 transition"
+          >
+            Создать кампанию
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

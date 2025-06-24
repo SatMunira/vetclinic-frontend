@@ -36,7 +36,7 @@ const DashboardPage = () => {
             )}
             {user?.role === 'ROLE_ADMIN' && (
                 <ul>
-                    <li><Link to="/admin/vaccination">Создать кампанию вакцинации</Link></li>
+                    <li><Link to="/admin/vaccination">🩺 Кампании вакцинации</Link></li>
                     <li><Link to="/articles">📚 Все статьи</Link></li>
                     <li><Link to="/articles/create">➕ Добавить статью</Link></li>
                       <li><Link to="/pharmacy">💊 Аптека</Link></li> 

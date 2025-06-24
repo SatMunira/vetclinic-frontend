@@ -16,6 +16,9 @@ import CreateCampaignPage from './pages/CreateCampaignPage';
 import ArticlesPage from './pages/ArticlesPage';
 import CreateArticlePage from './pages/CreateArticlePage';
 import PharmacyPage from './pages/PharmacyPage';
+import AdminVaccinationPage from './pages/AdminVaccinationPage';
+import ArticleDetailsPage from './pages/ArticleDetailsPage';
+
 
 function PrivateRoute({ children }) {
   const { token } = React.useContext(AuthContext);
@@ -83,7 +86,7 @@ function App() {
             path="/admin/vaccination"
             element={
               <PrivateRoute>
-                <CreateCampaignPage />
+                <AdminVaccinationPage />
               </PrivateRoute>
             }
           />
@@ -102,6 +105,10 @@ function App() {
                 <PharmacyPage />
               </PrivateRoute>
             }
+          />
+          <Route
+            path="/articles/:id"
+            element={<PrivateRoute><ArticleDetailsPage /></PrivateRoute>}
           />
 
           <Route
