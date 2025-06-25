@@ -32,18 +32,23 @@ const ChatList = () => {
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h2>Список чатов</h2>
+    <div className="max-w-md mx-auto p-6 bg-white rounded-xl shadow-md mt-10">
+      <h2 className="text-2xl font-semibold mb-6 text-center text-gray-800">Список чатов</h2>
       {loading ? (
-        <p>Загрузка...</p>
+        <p className="text-center text-gray-500">Загрузка...</p>
       ) : contacts.length === 0 ? (
-        <p>Нет доступных пользователей для чата</p>
+        <p className="text-center text-gray-500">Нет доступных пользователей для чата</p>
       ) : (
-        <ul>
+        <ul className="divide-y divide-gray-200">
           {contacts.map((user) => (
-            <li key={user.id}>
-              <button onClick={() => openChat(user.id)}>
-                💬 {user.username}
+            <li key={user.id} className="py-3">
+              <button
+                onClick={() => openChat(user.id)}
+                className="w-full text-left px-4 py-2 rounded-lg hover:bg-blue-100 transition flex items-center gap-2"
+                aria-label={`Открыть чат с ${user.username}`}
+              >
+                <span className="text-blue-600">💬</span>
+                <span className="font-medium text-gray-900">{user.username}</span>
               </button>
             </li>
           ))}

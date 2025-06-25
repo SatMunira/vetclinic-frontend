@@ -28,72 +28,84 @@ const CreateCampaignPage = () => {
       setForm({ vaccineName: '', date: '', slots: '', description: '' });
     } catch (err) {
       console.error('Ошибка создания кампании', err);
-      alert('Ошибка');
+      alert('Ошибка при создании кампании');
     }
   };
 
   return (
-    <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
-      <div className="bg-white shadow-xl rounded-2xl p-8 space-y-6">
-        <h2 className="text-3xl font-bold text-center text-gray-800">Создать кампанию вакцинации</h2>
+    <div className="max-w-2xl mx-auto px-6 py-10">
+      <div className="bg-white shadow-lg rounded-2xl p-8">
+        <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">Создать кампанию вакцинации</h2>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Название вакцины</label>
+            <label htmlFor="vaccineName" className="block mb-2 text-sm font-medium text-gray-700">
+              Название вакцины
+            </label>
             <input
               type="text"
+              id="vaccineName"
               name="vaccineName"
               value={form.vaccineName}
               onChange={handleChange}
               placeholder="Например, Вакцина-X"
               required
-              className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Дата и время</label>
+            <label htmlFor="date" className="block mb-2 text-sm font-medium text-gray-700">
+              Дата и время
+            </label>
             <input
               type="datetime-local"
+              id="date"
               name="date"
               value={form.date}
               onChange={handleChange}
               required
               step="600"
-              className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Количество слотов</label>
+            <label htmlFor="slots" className="block mb-2 text-sm font-medium text-gray-700">
+              Количество слотов
+            </label>
             <input
               type="number"
+              id="slots"
               name="slots"
               value={form.slots}
               onChange={handleChange}
               placeholder="Например, 25"
               required
               min="1"
-              className="w-full border border-gray-300 rounded-xl px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Описание / адрес</label>
+            <label htmlFor="description" className="block mb-2 text-sm font-medium text-gray-700">
+              Описание / адрес
+            </label>
             <textarea
+              id="description"
               name="description"
               value={form.description}
               onChange={handleChange}
               placeholder="Адрес, кабинет, доп. информация"
               rows={4}
               required
-              className="w-full border border-gray-300 rounded-xl px-4 py-2 resize-none focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full rounded-xl border border-gray-300 px-4 py-3 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-xl font-semibold hover:bg-blue-700 transition"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl transition"
           >
             Создать кампанию
           </button>

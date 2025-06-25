@@ -14,35 +14,53 @@ const LoginPage = () => {
     try {
       const res = await api.post('/auth/login', { username, password });
       const token = res.data.token;
-      const payload = JSON.parse(atob(token.split('.')[1])); // достаём данные из токена
-      login(token, { username: payload.sub, role: payload.role }); // можно расширить
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      login(token, { username: payload.sub, role: payload.role });
     } catch (err) {
       setError('Неверный логин или пароль');
     }
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: 'auto', paddingTop: '100px' }}>
-      <h2>Вход</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="max-w-md mx-auto mt-24 p-8 bg-white rounded-xl shadow-lg">
+      <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">Вход</h2>
+
+      <form onSubmit={handleSubmit} className="space-y-6">
         <input
           type="text"
           placeholder="Имя пользователя"
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={e => setUsername(e.target.value)}
           required
-        /><br />
+          className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+          autoComplete="username"
+        />
         <input
           type="password"
           placeholder="Пароль"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={e => setPassword(e.target.value)}
           required
-        /><br />
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <button type="submit">Войти</button>
+          className="w-full px-4 py-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+          autoComplete="current-password"
+        />
+        {error && (
+          <p className="text-red-600 text-sm animate-pulse">{error}</p>
+        )}
+        <button
+          type="submit"
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-md transition duration-200"
+        >
+          Войти
+        </button>
       </form>
-      <p>Нет аккаунта? <Link to="/register">Регистрация</Link></p>
+
+      <p className="mt-6 text-center text-gray-600">
+        Нет аккаунта?{' '}
+        <Link to="/register" className="text-blue-600 hover:underline">
+          Регистрация
+        </Link>
+      </p>
     </div>
   );
 };
